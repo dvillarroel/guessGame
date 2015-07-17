@@ -1,36 +1,31 @@
-//class item
+// JavaScript Document
 
-var itemGame = function(value, position, parPosition){};
-this.position = position;
-this.value=value;
-this.parPosition=parPosition;
-//value for status, 0 or 1.. if the status is 1, then it should be printed, and not considered
-this.status = 0;
-
-itemGame.prototype.showPosition = function(){
-
-    return position;
+var Item = function(valor) {
+    this.valor = valor;
+    this.guessed = false;
 };
 
-itemGame.prototype.showValue = function(){
-
-    return value;
+Item.prototype.mostrar = function (){
+         
+    if (this.guessed){
+        return this.valor;
+    }
+    else{
+        return '*';  
+    }
+        
+};
+    
+Item.prototype.mostrarValor = function (){
+    return this.valor;
+};
+    
+Item.prototype.adivinado = function (){
+    this.guessed = true;
+};
+    
+Item.prototype.getGuessed = function (){
+    return this.guessed;
 };
 
-itemGame.prototype.showParPosition = function(){
-
-    return parPosition;
-};
-
-itemGame.prototype.showStatus = function(){
-
-    return status;
-};
-
-itemGame.prototype.updateStatus = function(newValue){
-
-    status = newValue;
-};
-
-module.exports = itemGame;
-
+module.exports = Item;
