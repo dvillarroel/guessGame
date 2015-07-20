@@ -1,6 +1,10 @@
 // JavaScript Document
 var Item = require("./Item.js");
 
+/* 
+ * Class which represents the
+ * table of the game
+ */        
 var Tablero = function() {
      this.valores = ['a', 'b', 'c', 'd' , 'e' , 'f' ,'g' ,'h' ,'i' ,'j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']; 
      this.tablero = [[]]; 
@@ -13,7 +17,11 @@ var Tablero = function() {
      this.ultimoPos2 = 0;
 };     
 
-
+/* 
+ * Creates the table with the
+ * specified size, and using 
+ * random locations for the items
+ */        
 Tablero.prototype.create = function(){
     this.tablero = new Array(this.size);   
     for (i = 0; i < this.size; i++) { 
@@ -43,7 +51,10 @@ Tablero.prototype.create = function(){
             
     //console.log (this.tablero);            
 };
-         
+
+/* 
+ * Displays the guess table to the user
+ */                 
 Tablero.prototype.mostrar = function(){
     var print = '';
     for (i = 0; i < this.size; i++) { 
@@ -54,7 +65,11 @@ Tablero.prototype.mostrar = function(){
     }
     return print;
 }; 
-        
+
+/* 
+ * Displays the guess table to the user
+ * (all the items are discovered)
+ */                         
 Tablero.prototype.mostrarTodo = function(){
     var print = '';
     for (i = 0; i < this.size; i++) { 
@@ -65,7 +80,10 @@ Tablero.prototype.mostrarTodo = function(){
     }
     return print;
 }; 
-        
+
+/* 
+ * Returns true if all the items have been guessed
+ */ 
 Tablero.prototype.adivinado = function(){
     var res = true;
     for (i = 0; i < this.size; i++) { 
@@ -78,7 +96,14 @@ Tablero.prototype.adivinado = function(){
     }     
     return res;
 };
-        
+
+/* 
+ * Verify that a entry for the game is valid
+ * @param {integer} pos1
+ *   The pos1 for the table
+ * @param {integer} pos2
+ *   The pos2 for the table
+ */ 
 Tablero.prototype.entradaValida = function(pos1, pos2){
     var res = true;
     if (pos1 > this.size-1 || pos2 > this.size-1){
@@ -87,6 +112,13 @@ Tablero.prototype.entradaValida = function(pos1, pos2){
     return res;
 };
 
+/* 
+ * Return true if all the attemps has been reached
+ * @param {integer} pos1
+ *   The pos1 for the table
+ * @param {integer} pos2
+ *   The pos2 for the table
+ */ 
 Tablero.prototype.intentosAlcanzados = function(pos1, pos2){
     res = true;
     if (this.intentos != this.maxIntentos ){
@@ -95,19 +127,34 @@ Tablero.prototype.intentosAlcanzados = function(pos1, pos2){
     return res;
 };
 
+/* 
+ * Return the current attempts
+ */ 
 Tablero.prototype.getIntentos = function(){
 	return this.intentos;
 };
 
+/* 
+ * Return the current countPar value
+ */ 
 Tablero.prototype.getCountPar = function(){
     return this.countPar;
 };
 
+/* 
+ * Return the table of the guess 
+ */ 
 Tablero.prototype.getTablero = function(){
     return this.tablero;
 };
 
-
+/* 
+ * Guess an spot in the table
+  * @param {integer} pos1
+ *   The pos1 for the table
+ * @param {integer} pos2
+ *  
+ */
 Tablero.prototype.adivinar = function(pos1, pos2){
     if (this.entradaValida(pos1,pos2)){
          if (this.intentos != this.maxIntentos ){ 
