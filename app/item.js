@@ -35,7 +35,7 @@ Item.prototype.mostrarValor = function (){
 };
 
 /* *
- * Returns the current value of guessed
+ * Change the current value of guessed to guessed
  */        
 Item.prototype.adivinado = function (){
     this.guessed = true;
